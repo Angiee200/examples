@@ -1,0 +1,49 @@
+import React, { useState } from "react";
+
+export default function ConflictResolutionApp() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+
+  const questions = [
+    {
+      title: "Paso 1: ¿Qué me hizo sentir mal o incómodo antes de esta pelea?",
+      placeholder: "Escribe aquí tus sentimientos, por ejemplo: 'Me sentí ignorado cuando...'",
+      key: "origen"
+    },
+    {
+      title: "Paso 2: ¿Qué hacemos que hace que la pelea escale?",
+      placeholder: "Identifica patrones como interrumpirnos, subir el tono...",
+      key: "patron"
+    },
+    {
+      title: "Paso 3: ¿Qué podríamos hacer diferente la próxima vez que discutamos?",
+      placeholder: "Ej: usar una palabra clave, hacer una pausa...",
+      key: "alternativa"
+    },
+    {
+      title: "Paso 4: ¿Cómo podemos mostrarnos cariño después de discutir?",
+      placeholder: "Ej: un abrazo, un mensaje bonito, una disculpa sincera...",
+      key: "reconexion"
+    },
+    {
+      title: "Paso 5: ¿Qué aprendimos de esta discusión sobre nosotros?",
+      placeholder: "Reflexiona sobre el aprendizaje emocional...",
+      key: "aprendizaje"
+    }
+  ];
+
+  const handleChange = (e) => {
+    setAnswers({ ...answers, [questions[step].key]: e.target.value });
+  };
+
+  const nextStep = () => {
+    if (step < questions.length - 1) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 0) setStep(step - 1);
+  };
+
+  return (
+    <div className="max-w-xl mx-auto mt-10 p-4 bg-white rounded-2xl shadow-md">
+      <h1 className="text-2xl font-bold mb-4 text-center">🧘
